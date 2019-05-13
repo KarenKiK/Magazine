@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col mt">
+            <h1>All Items Shop</h1>
+
+            <form data-th-action="@{/}" method="get">
+                <input type="search" name="search" data-th-value="${search}">
+
+            </form>
+
+            <ul class="list-group mt-3">
+                <li class="list-group-item" data-th-each="product : ${products}" data-th-if="${product}">
+                    <a data-th-href="@{/view/{id}(id=${product.getId()})}">
+                        [[ ${product.getName()} ]]
+                    </a>
+                    <p data-th-if="${product instanceOf T(ru.itpark.shop.domain.IPhone)}">
+                        iphone
+                    </p>
+                    <p data-th-if="${product instanceOf T(ru.itpark.shop.domain.TShirt)}">
+                        shirt
+                    </p>
+                </li>
+            </ul>
+
+            <a class="btn btn-primary" data-th-href="@{/add}" role="button">Добавить продукт</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
